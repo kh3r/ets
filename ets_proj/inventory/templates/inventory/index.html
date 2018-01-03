@@ -1,0 +1,15 @@
+{% extends 'base.html' %} {% block body_block %}
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="col-lg-6">
+    <p>Search Equipment:</p>
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Example - Yokogawa TX3012..." aria-label="Search for...">
+      <span class="input-group-btn">
+              <a href="{% url 'inventory:list' %}" class="btn btn-secondary">Search</a>
+            </span>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

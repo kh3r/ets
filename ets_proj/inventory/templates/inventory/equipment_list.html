@@ -1,0 +1,53 @@
+{% extends 'base.html' %} {% block body_block %}
+
+<div class="jumbotron">
+  <p>Refine Search Results:</p>
+  <input class="form-control form-control-sm" type="text" placeholder="Type equipment here...">
+  <p>Category</p>
+  <select class="form-control form-control-sm">
+  <option>Power Meter</option>
+  <option>Oscilloscope</option>
+  <option>Probe</option>
+</select>
+  <p></p>
+  <button type="button" class="btn btn-secondary btn-sm">Search</button>
+</div>
+
+
+  <table class='table table-hover table-dark'>
+     <caption>List of equipment based on search query</caption>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>TNumber</th>
+        <th>Brand</th>
+        <th>Model</th>
+        <th>Category</th>
+        <th>Description</th>
+        <th>Manual</th>
+        <th>Status</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for eq in equipment %}
+      <tr>
+        <td>{{ eq.id }}</td>
+        <td>{{ eq.tnumber }}</td>
+        <td>{{ eq.brand }}</td>
+        <td>{{ eq.model }}</td>
+        <td>{{ eq.category }}</td>
+        <td>{{ eq.description }}</td>
+        <td> <a href="{{ eq.manual }}" target="_blank" class="badge badge-pill badge-primary">.pdf</a></td>
+        {% if eq.status == "Available" %}
+        <td><span class="badge badge-success">{{ eq.status }}</span></td>
+        {% else %}
+        <td><span class="badge badge-danger">{{ eq.status }}</span></td>
+        {% endif %}
+        <td> <a href="{{ eq.id }}" class="btn btn-secondary">View Details</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}
